@@ -1,5 +1,4 @@
 
-
 dependences:
 
 - mongodb // library to use mongodb atlas
@@ -14,3 +13,5 @@ dependences:
 - jsonwebtoken // help to create a token for the auth
 - swagger // test
 - YAML 
+- chai chai-http // test application 
+- mocha //test application

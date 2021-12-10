@@ -6,12 +6,12 @@ const { verifyToken } = require("../validation");
 // /api/products/
 
 //Create product--post
-router.post("/", verifyToken, (req, res) =>{
-
+// router.post("/", verifyToken, (req, res) =>{
+    router.post("/", (req, res) =>{ //test
     data = req.body;
 
     product.insertMany(data) // insert one or many item
-    .then(data => {res.send(data); })
+    .then(data => {res.status(201).send(data); })
     .catch(err => {res.status(500).send({message: err.message}); })
 });
 

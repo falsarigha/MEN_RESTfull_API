@@ -10,17 +10,26 @@ const yaml = require("yamljs")
 
 //setup swagger
 const swaggerDefinition = yaml.load("./swagger.yaml");
-app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerDefinition));
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerDefinition)); 
 
 //import routes
 const productRoutes = require("./routes/product.js");
-
 const authRoutes = require("./routes/auth");
 
 require("dotenv-flow").config();
 
 //parse requeste of content type JSON
 app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Handle CORS
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "auth-token, Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 // connecting to the DB
 mongoose.connect
